@@ -18,6 +18,15 @@ steps:
   inputs:
     version: '$(dotnetSdkVersion)'
 
+- task: UseNode@1
+  displayName: 'Install Node.js 16.x'
+  inputs:
+    version: '16.x'
+
+- script: 'npm cache clean --force'
+  displayName: 'Clean NPM cache'
+
+
 - task: Npm@1
   displayName: 'Run npm install'
   inputs:
