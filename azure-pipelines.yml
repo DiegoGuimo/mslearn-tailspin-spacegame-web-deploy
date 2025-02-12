@@ -2,14 +2,15 @@ trigger:
 - '*'
 
 pool:
-  vmImage: 'ubuntu-20.04'
+  name: 'RetoAzure' 
   demands:
-  - npm
+    - agent.name -equals MyAgent
+
 
 variables:
   buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '6.x'
+  dotnetSdkVersion: '8.x'
 
 steps:
 - task: UseDotNet@2
@@ -21,9 +22,13 @@ steps:
   displayName: 'Run npm install'
   inputs:
     verbose: false
+    arguments: '--no-optional'
 
-- script: './node_modules/.bin/node-sass $(wwwrootDir) --output $(wwwrootDir)'
+- script: 'npx sass $(wwwrootDir) --no-source-map --style=compressed'
   displayName: 'Compile Sass assets'
+
+- script: 'npm install --global gulp-cli'
+  displayName: 'Install Gulp CLI globally'
 
 - task: gulp@1
   displayName: 'Run gulp tasks'
