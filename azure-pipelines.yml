@@ -16,7 +16,6 @@ stages:
       - agent.name -equals MyAgent
 
 variables:
-  buildConfiguration: 'Release'
   wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
   dotnetSdkVersion: '8.x'
 
