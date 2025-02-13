@@ -3,6 +3,9 @@ trigger:
 
 variables:
   buildConfiguration: 'Release'
+  wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
+  dotnetSdkVersion: '8.x'
+  
 
 stages:
 - stage: 'Build'
@@ -15,9 +18,6 @@ stages:
       demands:
       - agent.name -equals MyAgent
 
-variables:
-  wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
-  dotnetSdkVersion: '8.x'
 
 steps:
 - task: UseDotNet@2
