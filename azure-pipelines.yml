@@ -85,6 +85,11 @@ stages:
       succeeded(),
       eq(variables['Build.SourceBranchName'], variables['releaseBranchName'])
     )
+  jobs:
+  - job: Validate
+    displayName: 'Validation Job'
+    steps:
+    - script: echo "Validation successful"
 
 - stage: 'Deploy'
   displayName: 'Deploy the web application'
